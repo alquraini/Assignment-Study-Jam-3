@@ -1,0 +1,37 @@
+import random
+
+def playgame():
+    choices = ["Batu", "Gunting", "Kertas"]
+    nyawaPlayer = 3
+    nyawaBot = 3
+
+    while nyawaPlayer > 0 and nyawaBot > 0: 
+        botChoices = random.choice(choices)
+
+        while True:  
+            playerChoices = input(f"Nyawa Kamu: {nyawaPlayer}, Nyawa Bot: {nyawaBot}. Masukkan Pilihan Anda (Batu, Gunting, Kertas): ").capitalize()
+            if playerChoices in choices:
+                break
+            else:
+                print("Input tidak valid. Masukkan Batu, Gunting, atau Kertas.")
+
+        print("Kamu memilih : ", playerChoices)
+        print("Bot memilih : ", botChoices)
+
+        if botChoices == playerChoices:
+            print("Hasilnya seri!")
+        elif (botChoices == "Batu" and playerChoices == "Gunting") or \
+             (botChoices == "Kertas" and playerChoices == "Batu") or \
+             (botChoices == "Gunting" and playerChoices == "Kertas"):
+            print("Kamu Kalah!")
+            nyawaPlayer -= 1  # Kurangi nyawa player
+        else:
+            print("Kamu Menang!")
+            nyawaBot -= 1      # Kurangi nyawa bot
+
+    if nyawaPlayer == 0:
+        print("Game Over! Kamu Kalah!")
+    else:
+        print("Selamat! Kamu Menang!")
+
+playgame()
